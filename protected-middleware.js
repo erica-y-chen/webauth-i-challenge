@@ -1,14 +1,9 @@
-const bcrypt = require('bcryptjs');
-
-const Users = require('./users/users-model.js');
 
 function protected(req, res, next) {
-  const {username, password } = req.headers;
-
   if(req.session && req.session.username) {
     next();
   } else {
-    res.status(401).json({ message: "invalid credentials" });
+    res.status(401).json({ message: "invalid credentials: please login to access this resource" });
   }
 }
 
