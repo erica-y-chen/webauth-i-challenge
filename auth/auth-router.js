@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 
-const Users = require('./users-model.js');
+const Users = require('../users/users-model.js');
 
 
-server.post('/api/register', (req,res) => {
+router.post('/register', (req,res) => {
     let user = req.body;
     const hashedPassword = bcrypt.hashSync(user.password, 6);
     user.password = hashedPassword; 
@@ -18,7 +18,7 @@ server.post('/api/register', (req,res) => {
         })
 })
 
-server.post('/api/login', (req, res) => {
+router.post('/login', (req, res) => {
     let {username, password } = req.body; 
 
     Users.findBy({ username })

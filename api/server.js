@@ -4,6 +4,9 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const usersRouter = require('../users/users-router.js');
 const server = express();
+const session = require('express-session')
+const authRouter = require('../auth/auth-router.js');
+
 
 const sessionConfig = {
     name: 'newSession',
@@ -23,6 +26,7 @@ server.use(express.json());
 server.use(cors());
 
 server.use('/api/users', usersRouter)
+server.use('/api/auth', authRouter)
 
 server.get('/', (req, res) => {
     res.send("It's alive");
